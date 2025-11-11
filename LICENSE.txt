@@ -1,0 +1,262 @@
+MIT License
+
+Copyright (c) 2025 Isiyak Solomon
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE OR ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------
+			DEFINITIONS
+-------------------------------------------------------------------
+
+"License" - This MIT License agreement
+"Licensor" - The copyright owner (Isiyak Solomon)
+"Software" - DownNest and all associated files
+"You" / "Your" - The end user or organization
+"Derivative Work" - Any modification of the Software
+"Distribution" - Sharing or giving copies to others
+
+-------------------------------------------------------------------
+			GRANT OF LICENSE
+-------------------------------------------------------------------
+
+Subject to the terms and conditions of this License, the Licensor hereby 
+grants You a worldwide, non-exclusive, royalty-free, perpetual, irrevocable 
+license to:
+
+1. Use the Software for any purpose, including commercial purposes
+2. Copy the Software without restriction
+3. Modify the Software and create derivative works
+4. Distribute copies of the Software or derivative works
+5. Sublicense the Software to others
+
+This license applies to all copies, modifications, and derivative works of 
+the Software.
+
+-------------------------------------------------------------------
+		CONDITIONS AND LIMITATIONS
+-------------------------------------------------------------------
+
+The following conditions apply to Your use of the Software:
+
+1. COPYRIGHT NOTICE
+   You must include this LICENSE.txt file and the above copyright notice in:
+   - All copies of the Software
+   - All substantial portions of the Software
+   - All derivative works
+
+2. LICENSE NOTICE
+   Any modified version of the Software must clearly state that it has been
+   modified from the original Software by Isiyak Solomon.
+
+3. NO WARRANTY
+   The Software is provided "AS-IS" without warranty of any kind, express or
+   implied. This includes but is not limited to warranties of:
+   - MERCHANTABILITY
+   - FITNESS FOR A PARTICULAR PURPOSE
+   - NON-INFRINGEMENT
+   - TITLE
+   - QUIET ENJOYMENT
+
+4. NO LIABILITY
+   In no event shall the Licensor be liable for any:
+   - Direct damages
+   - Indirect damages
+   - Incidental damages
+   - Special damages
+   - Consequential damages
+   - Loss of profits
+   - Loss of data
+   - Loss of use
+   
+   Even if advised of the possibility of such damages.
+
+5. NO OBLIGATION
+   The Licensor is under no obligation to:
+   - Provide support or maintenance
+   - Issue updates or fixes
+   - Accept modifications or contributions
+   - Defend against patent claims
+
+-------------------------------------------------------------------
+			PERMITTED USES
+-------------------------------------------------------------------
+
+You are permitted to:
+
+✅ Use the Software for personal purposes
+✅ Use the Software for commercial purposes
+✅ Modify the Software
+✅ Distribute the Software
+✅ Create derivative works
+✅ Charge others for the Software
+✅ Include in commercial products
+✅ Sublicense to others
+✅ Use in proprietary software
+✅ Use for any legal purpose
+
+-------------------------------------------------------------------
+			RESTRICTIONS
+-------------------------------------------------------------------
+
+You must:
+
+✅ Include the original license in all copies
+✅ Include the original copyright notice
+✅ Document any modifications made
+✅ Include the same license with derivative works
+
+You must NOT:
+
+❌ Hold the author liable for damages
+❌ Remove copyright notices
+❌ Claim you created the original work
+❌ Use author's name for endorsement without permission
+
+-------------------------------------------------------------------
+			DISTRIBUTION
+-------------------------------------------------------------------
+
+When distributing the Software or derivative works, You must:
+
+1. Include unmodified LICENSE.txt file
+2. Include unmodified copyright notice
+3. Provide list of modifications (if any)
+4. Include copy of this License
+5. Make source code available (recommended)
+
+-------------------------------------------------------------------
+			INTELLECTUAL PROPERTY
+-------------------------------------------------------------------
+
+Isiyak Solomon retains all right, title, and interest in:
+- The original Software
+- The copyright
+- All intellectual property rights
+- All associated documentation
+
+You retain all rights to any modifications You create.
+
+-------------------------------------------------------------------
+			TERMINATION
+-------------------------------------------------------------------
+
+This license is perpetual and cannot be terminated except as follows:
+
+If You breach any term of this License:
+1. Your rights to the Software are automatically revoked
+2. You must cease all use of the Software
+3. You must destroy all copies in Your possession
+
+However, third parties who receive copies from You retain their rights.
+
+-------------------------------------------------------------------
+			GOVERNING LAW
+-------------------------------------------------------------------
+
+This License is governed by:
+- The laws of Ethiopia (Licensor's jurisdiction)
+- International copyright laws
+- Software licensing conventions
+
+Any disputes shall be resolved under these laws.
+
+-------------------------------------------------------------------
+			CONTACT INFORMATION
+-------------------------------------------------------------------
+
+For inquiries regarding this License or the Software:
+
+Author: Isiyak Solomon
+Email: isiyak.solomon.01@gmail.com
+Website: https://isiyaksolomon.pro.et
+GitHub: https://github.com/isiyaksolomon-dev
+
+-------------------------------------------------------------------
+			SEVERABILITY
+-------------------------------------------------------------------
+
+If any provision of this License is found to be unenforceable:
+1. That provision shall be severed
+2. All other provisions remain in effect
+3. The License continues in full force otherwise
+
+-------------------------------------------------------------------
+			ENTIRE AGREEMENT
+-------------------------------------------------------------------
+
+This License constitutes the entire agreement between Licensor and You 
+regarding the Software and supersedes all prior agreements or understandings.
+
+-------------------------------------------------------------------
+			THIRD-PARTY COMPONENTS
+-------------------------------------------------------------------
+
+DownNest uses the following open-source components:
+
+1. Watchdog (Apache License 2.0)
+   - Real-time file system monitoring
+   - https://github.com/gorakhargosh/watchdog
+
+2. PSUtil (BSD License)
+   - Process and system utilities
+   - https://github.com/giampaolo/psutil
+
+3. PyWin32 (Python License)
+   - Windows Python extensions
+   - https://github.com/pypa/pywin32
+
+4. NSSM (ZPL/MIT License)
+   - Non-sucking service manager
+   - https://nssm.cc/
+
+Each component retains its own license. Please refer to their respective 
+licenses for terms.
+
+-------------------------------------------------------------------
+			ATTRIBUTION
+-------------------------------------------------------------------
+
+When using DownNest, you are not required to provide attribution, but it is 
+appreciated if you acknowledge:
+
+"Built with DownNest - Smart Downloads Organizer by Isiyak Solomon"
+
+-------------------------------------------------------------------
+			WARRANTY DISCLAIMER
+-------------------------------------------------------------------
+
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER 
+EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES 
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL 
+ISIYAK SOLOMON BE LIABLE FOR ANY DAMAGES WHATSOEVER (INCLUDING, WITHOUT 
+LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, 
+LOSS OF BUSINESS INFORMATION, OR ANY OTHER PECUNIARY LOSS) ARISING OUT OF 
+THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF ISIYAK SOLOMON HAS 
+BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+-------------------------------------------------------------------
+			VERSION INFORMATION
+-------------------------------------------------------------------
+
+License Version: 1.0
+Effective Date: January 1, 2025
+Applicable Software Versions: 1.0.0 and later
+
+-------------------------------------------------------------------
+END OF LICENSE

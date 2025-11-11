@@ -1,0 +1,15 @@
+{
+  "downloads_dir": "",
+  "destinations": {
+    "Documents": [".pdf", ".doc", ".docx", ".txt", ".xlsx", ".pptx"],
+    "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".heic"],
+    "Videos": [".mp4", ".mkv", ".avi", ".mov", ".wmv"],
+    "Music": [".mp3", ".wav", ".flac", ".m4a"],
+    "Archives": [".zip", ".rar", ".tar", ".gz", ".7z"],
+    "Installers": [".exe", ".msi", ".dmg", ".pkg"],
+    "Code": [".py", ".js", ".html", ".css", ".java", ".cpp", ".ts"]
+  },
+  "ignore_patterns": [".crdownload", ".part", ".tmp", ".partial"],
+  "move_retries": 5,
+  "move_retry_delay_seconds": 1
+}

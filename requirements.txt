@@ -1,0 +1,5 @@
+# DownNest - Smart Downloads Organizer dependencies
+
+watchdog          # File system monitoring
+psutil            # Process & system utilities
+pywin32           # Windows-specific extensions for service & admin tasks
