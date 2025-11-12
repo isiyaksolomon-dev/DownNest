@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DownNest - Smart Downloads Organizer for Windows. Automatically organizes your Downloads folder into categories.">
+  <title>DownNest - Smart Downloads Organizer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2e86de;
+      --secondary-color: #f1f3f6;
+      --text-color: #333;
+      --card-bg: #fff;
+      --border-radius: 12px;
+      --shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+    body { background-color: var(--secondary-color); color: var(--text-color); line-height: 1.6; }
+
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1rem; }
+
+    main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+    .feature-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease;
+    }
+
+    .feature-card:hover { transform: translateY(-5px); }
+
+    h2 { color: var(--primary-color); margin-bottom: 0.5rem; }
+    ul { list-style: none; padding-left: 1rem; }
+    ul li::before { content: "• "; color: var(--primary-color); font-weight: bold; }
+
+    .download-section {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .download-btn {
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      transition: background 0.2s ease;
+    }
+
+    .download-btn:hover { background-color: #1b4f91; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media(max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      .feature-card { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>❇️ DownNest</h1>
+    <p>Smart Downloads Organizer for Windows</p>
+  </header>
+
+  <main>
+    <section class="feature-card">
+      <h2>Automatic Organization</h2>
+      <p>DownNest monitors your Downloads folder and automatically sorts files into categories:</p>
+      <ul>
+        <li>Documents (PDF, DOCX, TXT, etc.)</li>
+        <li>Images (JPG, PNG, GIF, etc.)</li>
+        <li>Videos (MP4, AVI, MKV, etc.)</li>
+        <li>Music (MP3, WAV, FLAC, etc.)</li>
+        <li>Archives (ZIP, RAR, 7Z, etc.)</li>
+        <li>Installers (EXE, MSI)</li>
+        <li>Code (PY, JS, HTML, CSS, etc.)</li>
+      </ul>
+    </section>
+
+    <section class="feature-card">
+      <h2>Notifications</h2>
+      <p>Receive system tray notifications when files are moved, so you always know what’s organized without interrupting your workflow.</p>
+    </section>
+
+    <section class="feature-card">
+      <h2>Runs Silently</h2>
+      <p>DownNest runs in the background, ensuring your files are always organized without any manual intervention.</p>
+    </section>
+
+    <div class="download-section">
+      <a href="DownNest_Setup_1.1.0.exe" class="download-btn">Download Now</a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Isiyak Solomon | <a href="https://github.com/isiyaksolomon-dev/downnest" target="_blank">GitHub</a> | <a href="mailto:isiyak.solomon.01@gmail.com">Contact</a>
+  </footer>
+
+</body>
+</html>
