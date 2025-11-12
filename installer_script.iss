@@ -74,7 +74,9 @@ Root: HKCU; Subkey: "Software\DownNest"; ValueType: string; ValueName: "InstallP
 Root: HKCU; Subkey: "Software\DownNest"; ValueType: string; ValueName: "Version"; ValueData: "1.0.0"
 
 [Code]
+// --------------------------------------------------------
 // Welcome Page Custom Message
+// --------------------------------------------------------
 procedure InitializeWizard();
 begin
   WizardForm.WelcomeLabel1.Caption := '🪺 Welcome to DownNest';
@@ -91,7 +93,9 @@ begin
     'Click Next to continue installation.';
 end;
 
+// --------------------------------------------------------
 // Finish Page Custom Message
+// --------------------------------------------------------
 procedure CurPageChanged(CurPageID: Integer);
 begin
   if CurPageID = wpFinished then
@@ -112,7 +116,9 @@ begin
   end;
 end;
 
-// Installation Success
+// --------------------------------------------------------
+// Installation Success Message
+// --------------------------------------------------------
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if CurStep = ssPostInstall then
@@ -126,5 +132,28 @@ begin
       '  • DownNest runs silently in the background' + #13#13 +
       'For more information, visit the README file in the installation folder.',
       mbInformation, MB_OK);
+  end;
+end;
+
+// --------------------------------------------------------
+// Uninstall Cleanup (ONLY remove installation folder)
+// --------------------------------------------------------
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  AppDir: string;
+begin
+  if CurUninstallStep = usUninstall then
+  begin
+    AppDir := ExpandConstant('{app}');
+    if DirExists(AppDir) then
+    begin
+      Log('Removing installation folder: ' + AppDir);
+      try
+        DelTree(AppDir, True, True, True);
+        Log('✅ Installation folder removed successfully.');
+      except
+        Log('⚠️ Failed to remove installation folder: ' + AppDir);
+      end;
+    end;
   end;
 end;

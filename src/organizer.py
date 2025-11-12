@@ -97,6 +97,8 @@ def process_file(file_path: Path):
     if file_path.suffix.lower() in TEMP_EXTENSIONS:
         return
     if wait_for_complete(file_path):
+        print(f"⏳ Waiting 30s before moving {file_path.name}...")
+        time.sleep(30)
         move_file(file_path)
 
 # ----------------------------
