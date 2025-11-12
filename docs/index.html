@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="DownNest - Smart Downloads Organizer. Automatically organize your Downloads folder into categories. Free, lightweight, and professional.">
   <meta name="keywords" content="downloads organizer, file organization, windows utility, automatic sorting">
+  <meta property="og:title" content="DownNest - Smart Downloads Organizer">
+  <meta property="og:description" content="Automatically organize your Downloads folder into categories. Free, lightweight, and professional.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://raw.githubusercontent.com/isiyaksolomon-dev/DownNest/main/docs/icon.png">
   <title>DownNest - Smart Downloads Organizer</title>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -27,597 +31,134 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, var(--bg-dark) 0%, #0a0e27 100%);
       color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
+      line-height:1.6;
+      overflow-x:hidden;
     }
 
+    /* ===== NAVBAR ===== */
     nav {
       position: fixed;
-      top: 0;
-      width: 100%;
+      top:0;
+      width:100%;
       background: rgba(15, 23, 42, 0.8);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      z-index: 1000;
+      z-index:1000;
       transition: var(--transition);
     }
+    nav.scrolled { background: rgba(15, 23, 42, 0.95); box-shadow: var(--shadow-md);}
+    .nav-content { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem;}
+    .logo { display:flex; align-items:center; gap:0.75rem; font-size:1.5rem; font-weight:700; color: var(--accent); text-decoration:none; letter-spacing:-0.5px;}
+    .logo-icon { font-size:1.8rem; animation: float 3s ease-in-out infinite;}
+    @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);} }
+    .nav-links { display:flex; gap:2rem; align-items:center; }
+    .nav-links a { color: var(--text-secondary); text-decoration:none; font-size:0.95rem; font-weight:500; transition:var(--transition); position:relative;}
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--accent); transition:var(--transition);}
+    .nav-links a:hover::after { width:100%; }
 
-    nav.scrolled {
-      background: rgba(15, 23, 42, 0.95);
-      box-shadow: var(--shadow-md);
-    }
-
-    .nav-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-
-    .logo-icon {
-      font-size: 1.8rem;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-5px); }
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
+    /* ===== HERO SECTION ===== */
     header {
       margin-top: 60px;
       min-height: calc(100vh - 60px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem;
+      position:relative;
+      overflow:hidden;
     }
-
     header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
-      pointer-events: none;
+      content:'';
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      background: radial-gradient(circle at 20% 50%, rgba(6,182,212,0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(16,185,129,0.05) 0%, transparent 50%);
+      pointer-events:none;
     }
-
-    .hero-content {
-      max-width: 900px;
-      z-index: 1;
-      text-align: center;
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-icon {
-      font-size: 4rem;
-      margin-bottom: 1.5rem;
-      animation: bounce 2s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    header h1 {
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
+    .hero-content { max-width:900px; z-index:1; text-align:center; animation: fadeInUp 0.8s ease-out;}
+    @keyframes fadeInUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+    .hero-icon { font-size:4rem; margin-bottom:1.5rem; animation:bounce 2s ease-in-out infinite;}
+    @keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+    header h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight:700; margin-bottom:1rem;
       background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -1px;
-    }
-
-    header p {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.8;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
-
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:-1px; }
+    header p { font-size:1.25rem; color:var(--text-secondary); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.8;}
+    .cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:3rem;}
     .btn {
-      padding: 0.875rem 2rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      letter-spacing: 0.3px;
+      padding:0.875rem 2rem; border-radius:8px; font-size:1rem; font-weight:600; text-decoration:none;
+      border:none; cursor:pointer; transition:var(--transition); display:inline-flex; align-items:center; gap:0.5rem; letter-spacing:0.3px;
     }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--accent) 0%, #0891b2 100%);
       color: var(--bg-dark);
-      box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+      box-shadow: 0 10px 25px rgba(6,182,212,0.3);
     }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 15px 35px rgba(6,182,212,0.4);}
+    .btn-secondary { background:transparent; color:var(--accent); border:1.5px solid var(--accent);}
+    .btn-secondary:hover { background: rgba(6,182,212,0.1); transform:translateY(-2px); }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
-    }
+    /* ===== HERO STATS ===== */
+    .hero-stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:2rem; margin-top:3rem; padding-top:3rem; border-top:1px solid var(--border);}
+    .stat { text-align:center; }
+    .stat-number { font-size:2rem; font-weight:700; color:var(--accent); margin-bottom:0.5rem; }
+    .stat-label { font-size:0.95rem; color:var(--text-secondary); }
 
-    .btn-secondary {
-      background: transparent;
-      color: var(--accent);
-      border: 1.5px solid var(--accent);
-    }
+    /* ===== FEATURES ===== */
+    .features { max-width:1200px; margin:6rem auto; padding:0 2rem; }
+    .section-title { text-align:center; margin-bottom:4rem; }
+    .section-title h2 { font-size: clamp(1.8rem,5vw,2.5rem); margin-bottom:1rem; color: var(--text-primary);}
+    .section-title p { font-size:1.1rem; color: var(--text-secondary); max-width:500px; margin:0 auto;}
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-bottom:4rem;}
+    .feature-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:2rem; transition:var(--transition); position:relative; overflow:hidden;}
+    .feature-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--accent),var(--success)); transform:scaleX(0); transform-origin:left; transition:var(--transition);}
+    .feature-card:hover { border-color: var(--accent); box-shadow:var(--shadow-lg); transform:translateY(-5px);}
+    .feature-card:hover::before { transform:scaleX(1);}
+    .feature-icon { font-size:2.5rem; margin-bottom:1rem;}
+    .feature-card h3 { font-size:1.25rem; margin-bottom:0.75rem; color: var(--text-primary);}
+    .feature-card p { color: var(--text-secondary); font-size:0.95rem; line-height:1.7;}
 
-    .btn-secondary:hover {
-      background: rgba(6, 182, 212, 0.1);
-      transform: translateY(-2px);
-    }
+    /* ===== CATEGORIES ===== */
+    .categories { background: var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:3rem 2rem; margin-bottom:4rem;}
+    .categories h3 { font-size:1.5rem; margin-bottom:2rem; text-align:center; color: var(--text-primary);}
+    .categories-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1.5rem;}
+    .category { background: rgba(255,255,255,0.03); border:1px solid var(--border); padding:1.5rem; border-radius:8px; text-align:center; transition:var(--transition);}
+    .category:hover { background: rgba(6,182,212,0.1); border-color: var(--accent);}
+    .category-icon { font-size:2rem; margin-bottom:0.75rem;}
+    .category-name { font-weight:600; margin-bottom:0.5rem; color: var(--text-primary);}
+    .category-ext { font-size:0.85rem; color: var(--text-secondary);}
 
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--border);
-    }
+    /* ===== DOWNLOAD SECTION ===== */
+    .download-section { background: linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(16,185,129,0.05) 100%); border:1px solid var(--border); border-radius:12px; padding:3rem 2rem; text-align:center; margin-bottom:6rem;}
+    .download-section h2 { font-size:1.8rem; margin-bottom:1rem; color: var(--text-primary);}
+    .download-section p { color: var(--text-secondary); margin-bottom:2rem; max-width:500px; margin-left:auto; margin-right:auto;}
+    .download-info { display:flex; justify-content:center; gap:2rem; margin-top:2rem; flex-wrap:wrap; font-size:0.9rem; color: var(--text-secondary);}
+    .download-info span { display:flex; align-items:center; gap:0.5rem;}
 
-    .stat {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-    }
-
-    .features {
-      max-width: 1200px;
-      margin: 6rem auto;
-      padding: 0 2rem;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-title h2 {
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-
-    .section-title p {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--success));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: var(--transition);
-    }
-
-    .feature-card:hover {
-      border-color: var(--accent);
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-5px);
-    }
-
-    .feature-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .feature-card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-      color: var(--text-primary);
-    }
-
-    .feature-card p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .categories {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 3rem 2rem;
-      margin-bottom: 4rem;
-    }
-
-    .categories h3 {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--text-primary);
-    }
-
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .category {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      border-radius: 8px;
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .category:hover {
-      background: rgba(6, 182, 212, 0.1);
-      border-color: var(--accent);
-    }
-
-    .category-icon {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .category-name {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-
-    .category-ext {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .download-section {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 3rem 2rem;
-      text-align: center;
-      margin-bottom: 6rem;
-    }
-
-    .download-section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-
-    .download-section p {
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .download-info {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    .download-info span {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 3rem 2rem;
-      text-align: center;
-      color: var(--text-secondary);
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: var(--transition);
-      font-weight: 500;
-    }
-
-    .footer-links a:hover {
-      color: var(--accent-hover);
-    }
-
-    .footer-bottom {
-      font-size: 0.9rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
+    /* ===== FOOTER ===== */
+    footer { border-top:1px solid var(--border); padding:3rem 2rem; text-align:center; color: var(--text-secondary);}
+    .footer-content { max-width:1200px; margin:0 auto;}
+    .footer-links { display:flex; justify-content:center; gap:2rem; margin-bottom:1.5rem; flex-wrap:wrap;}
+    .footer-links a { color: var(--accent); text-decoration:none; transition: var(--transition); font-weight:500;}
+    .footer-links a:hover { color: var(--accent-hover);}
+    .footer-bottom { font-size:0.9rem; padding-top:1.5rem; border-top:1px solid var(--border);}
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .nav-links a {
-      .nav-links a {
-        font-size: 0.85rem;
-      }
-
-      header h1 {
-        font-size: 2rem;
-      }
-
-      header p {
-        font-size: 1rem;
-      }
-
-      .cta-buttons {
-        gap: 0.75rem;
-      }
-
-      .btn {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.9rem;
-      }
-
-      .hero-stats {
-        gap: 1.5rem;
-        margin-top: 2rem;
-        padding-top: 2rem;
-      }
-
-      .stat-number {
-        font-size: 1.5rem;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .categories-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
-
-      .download-info {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nav-content {
-        padding: 1rem;
-      }
-
-      .logo {
-        font-size: 1.2rem;
-      }
-
-      .logo-icon {
-        font-size: 1.4rem;
-      }
-
-      header {
-        margin-top: 50px;
-        min-height: calc(100vh - 50px);
-        padding: 1rem;
-      }
-
-      header h1 {
-        font-size: 1.5rem;
-      }
-
-      header p {
-        font-size: 0.9rem;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .hero-icon {
-        font-size: 3rem;
-      }
-
-      .features {
-        padding: 0 1rem;
-        margin: 3rem auto;
-      }
-
-      .section-title h2 {
-        font-size: 1.5rem;
-      }
-
-      .feature-card {
-        padding: 1.5rem;
-      }
-
-      .categories {
-        padding: 2rem 1rem;
-      }
-
-      .categories h3 {
-        font-size: 1.2rem;
-      }
-
-      .categories-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .download-section {
-        padding: 2rem 1rem;
-      }
-
-      footer {
-        padding: 2rem 1rem;
-      }
-    }
+    @media (max-width:768px){.nav-links{gap:1rem}.nav-links a{font-size:0.85rem;} header h1{font-size:2rem;} header p{font-size:1rem;} .cta-buttons{gap:0.75rem;} .btn{padding:0.75rem 1.5rem; font-size:0.9rem;} .hero-stats{gap:1.5rem;margin-top:2rem;padding-top:2rem;} .stat-number{font-size:1.5rem;} .features-grid{grid-template-columns:1fr;} .categories-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));} .download-info{flex-direction:column;gap:1rem;} .footer-links{flex-direction:column;gap:1rem;} }
+    @media (max-width:480px){.nav-content{padding:1rem;} .logo{font-size:1.2rem;} .logo-icon{font-size:1.4rem;} header{margin-top:50px; min-height:calc(100vh - 50px); padding:1rem;} header h1{font-size:1.5rem;} header p{font-size:0.9rem;} .cta-buttons{flex-direction:column;gap:0.5rem;} .btn{width:100%;justify-content:center;} .hero-icon{font-size:3rem;} .features{padding:0 1rem;margin:3rem auto;} .section-title h2{font-size:1.5rem;} .feature-card{padding:1.5rem;} .categories{padding:2rem 1rem;} .categories-grid{grid-template-columns:1fr;} .download-section{padding:2rem 1rem;} footer{padding:2rem 1rem;} }
   </style>
 </head>
 <body>
 
-  <!-- ===== NAVIGATION ===== -->
+  <!-- NAVIGATION -->
   <nav id="navbar">
     <div class="nav-content">
-      <a href="#" class="logo">
-        <span class="logo-icon">🪺</span>
-        DownNest
-      </a>
+      <a href="#" class="logo"><span class="logo-icon">🪺</span> DownNest</a>
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#categories">Categories</a>
@@ -627,173 +168,78 @@
     </div>
   </nav>
 
-
-  <!-- ===== HERO SECTION ===== -->
+  <!-- HERO SECTION -->
   <header>
     <div class="hero-content">
       <div class="hero-icon">🪺</div>
       <h1>DownNest</h1>
       <p>Smart Downloads Organizer for Windows</p>
-      <p style="font-size: 1rem; margin-bottom: 2rem;">Automatically organize your Downloads folder into meaningful categories. Free, lightweight, and professional.</p>
-      
+      <p style="font-size:1rem;margin-bottom:2rem;">Automatically organize your Downloads folder into meaningful categories. Free, lightweight, and professional.</p>
       <div class="cta-buttons">
-        <a href="https://github.com/isiyaksolomon-dev/DownNest/releases/download/v1.0.1/DownNest_Setup_1.0.1.exe" class="btn btn-primary" download>
-          ⬇️ Download Now
-        </a>
-        <a href="https://github.com/isiyaksolomon-dev/DownNest" target="_blank" class="btn btn-secondary">
-          ⭐ View on GitHub
-        </a>
+        <a href="https://github.com/isiyaksolomon-dev/DownNest/releases/download/v1.0.1/DownNest_Setup_1.0.1.exe" class="btn btn-primary" download>⬇️ Download Now</a>
+        <a href="https://github.com/isiyaksolomon-dev/DownNest" class="btn btn-secondary" target="_blank">⭐ View on GitHub</a>
       </div>
-
       <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-number">7+</div>
-          <div class="stat-label">File Categories</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">∞</div>
-          <div class="stat-label">File Support</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">0%</div>
-          <div class="stat-label">Configuration</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">Free & Open</div>
-        </div>
+        <div class="stat"><div class="stat-number">7+</div><div class="stat-label">File Categories</div></div>
+        <div class="stat"><div class="stat-number">∞</div><div class="stat-label">File Support</div></div>
+        <div class="stat"><div class="stat-number">0%</div><div class="stat-label">Configuration</div></div>
+        <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Free & Open</div></div>
       </div>
     </div>
   </header>
 
-  <!-- ===== FEATURES SECTION ===== -->
+  <!-- FEATURES -->
   <section class="features" id="features">
     <div class="section-title">
       <h2>Why Choose DownNest?</h2>
       <p>Powerful features designed to make your digital life organized and efficient</p>
     </div>
-
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>Real-time Organization</h3>
-        <p>Automatically sorts files as they download. No manual intervention needed. Your Downloads folder stays clean automatically.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3>Safe & Secure</h3>
-        <p>Respects file permissions and handles locked files gracefully. Your data is always protected and organized responsibly.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">👥</div>
-        <h3>Multi-User Support</h3>
-        <p>Automatically organizes Downloads folders for all users on your system. Perfect for shared computers.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">⚙️</div>
-        <h3>Zero Configuration</h3>
-        <p>Works perfectly out-of-the-box with sensible defaults. Advanced users can customize if needed.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3>Smart Categories</h3>
-        <p>7 intelligent categories plus an "Others" folder. Files are sorted by type for easy access and management.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">💨</div>
-        <h3>Lightweight & Fast</h3>
-        <p>Only 5-10 MB RAM usage. Runs silently in the background without slowing your computer down.</p>
-      </div>
+      <div class="feature-card"><div class="feature-icon">⚡</div><h3>Real-time Organization</h3><p>Automatically sorts files as they download. No manual intervention needed.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔒</div><h3>Safe & Secure</h3><p>Respects file permissions and handles locked files gracefully. Your data is protected.</p></div>
+      <div class="feature-card"><div class="feature-icon">👥</div><h3>Multi-User Support</h3><p>Automatically organizes Downloads folders for all users on your system.</p></div>
+      <div class="feature-card"><div class="feature-icon">⚙️</div><h3>Zero Configuration</h3><p>Works perfectly out-of-the-box with sensible defaults.</p></div>
+      <div class="feature-card"><div class="feature-icon">🎯</div><h3>Smart Categories</h3><p>7 intelligent categories plus "Others" folder. Files are sorted by type.</p></div>
+      <div class="feature-card"><div class="feature-icon">💨</div><h3>Lightweight & Fast</h3><p>Only 5-10 MB RAM usage. Runs silently in the background.</p></div>
     </div>
   </section>
 
-  <!-- ===== CATEGORIES SECTION ===== -->
+  <!-- CATEGORIES -->
   <section class="features">
     <div class="categories" id="categories">
       <h3>Automatic File Organization</h3>
-      <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Files are automatically sorted into these categories:</p>
-      
       <div class="categories-grid">
-        <div class="category">
-          <div class="category-icon">📄</div>
-          <div class="category-name">Documents</div>
-          <div class="category-ext">PDF, DOCX, TXT, XLSX</div>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">🖼️</div>
-          <div class="category-name">Images</div>
-          <div class="category-ext">JPG, PNG, GIF, SVG</div>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">🎬</div>
-          <div class="category-name">Videos</div>
-          <div class="category-ext">MP4, AVI, MKV, MOV</div>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">🎵</div>
-          <div class="category-name">Music</div>
-          <div class="category-ext">MP3, WAV, FLAC, M4A</div>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">📦</div>
-          <div class="category-name">Archives</div>
-          <div class="category-ext">ZIP, RAR, 7Z, TAR</div>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">💾</div>
-          <div class="category-name">Installers</div>
-          <div class="category-ext">EXE, MSI, DMG, PKG</div>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">💻</div>
-          <div class="category-name">Code</div>
-          <div class="category-ext">PY, JS, HTML, CSS</div>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">📂</div>
-          <div class="category-name">Others</div>
-          <div class="category-ext">Everything else</div>
-        </div>
+        <div class="category"><div class="category-icon">📄</div><div class="category-name">Documents</div><div class="category-ext">PDF, DOCX, TXT, XLSX</div></div>
+        <div class="category"><div class="category-icon">🖼️</div><div class="category-name">Images</div><div class="category-ext">JPG, PNG, GIF, SVG</div></div>
+        <div class="category"><div class="category-icon">🎬</div><div class="category-name">Videos</div><div class="category-ext">MP4, AVI, MKV, MOV</div></div>
+        <div class="category"><div class="category-icon">🎵</div><div class="category-name">Music</div><div class="category-ext">MP3, WAV, FLAC, M4A</div></div>
+        <div class="category"><div class="category-icon">📦</div><div class="category-name">Archives</div><div class="category-ext">ZIP, RAR, 7Z, TAR</div></div>
+        <div class="category"><div class="category-icon">💾</div><div class="category-name">Installers</div><div class="category-ext">EXE, MSI, DMG, PKG</div></div>
+        <div class="category"><div class="category-icon">💻</div><div class="category-name">Code</div><div class="category-ext">PY, JS, HTML, CSS</div></div>
+        <div class="category"><div class="category-icon">📂</div><div class="category-name">Others</div><div class="category-ext">Everything else</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== DOWNLOAD SECTION ===== -->
+  <!-- DOWNLOAD -->
   <section class="features">
     <div class="download-section" id="download">
       <h2>Ready to Get Started?</h2>
       <p>Download DownNest now and organize your Downloads folder automatically.</p>
-      
-      <a href="https://github.com/isiyaksolomon-dev/DownNest/releases/download/v1.0.1/DownNest_Setup_1.0.1.exe" class="btn btn-primary" style="margin-bottom: 2rem;" download>
-        ⬇️ Download DownNest v1.0.1
-      </a>
-
+      <a href="https://github.com/isiyaksolomon-dev/DownNest/releases/download/v1.0.1/DownNest_Setup_1.0.1.exe" class="btn btn-primary" style="margin-bottom:2rem;" download>⬇️ Download DownNest v1.0.1</a>
       <div class="download-info">
         <span>💾 ~100 MB</span>
         <span>🪟 Windows 7+</span>
         <span>⚡ Fast Install</span>
         <span>📜 MIT License</span>
       </div>
-
-      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;">
+      <div style="margin-top:2rem; padding-top:2rem; border-top:1px solid var(--border); color:var(--text-secondary); font-size:0.9rem;">
         <p>Installation takes less than 1 minute. Service starts automatically with Windows.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="footer-links">
@@ -801,7 +247,6 @@
         <a href="mailto:isiyak.solomon.01@gmail.com">Contact & Support</a>
         <a href="https://isiyaksolomon.pro.et" target="_blank">Personal Website</a>
       </div>
-      
       <div class="footer-bottom">
         <p>&copy; 2025 Isiyak Solomon. All rights reserved.</p>
         <p>DownNest is released under the <strong>MIT License</strong> - Free for personal and commercial use.</p>
@@ -809,55 +254,34 @@
     </div>
   </footer>
 
-  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function(){
       const navbar = document.getElementById('navbar');
-      if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+      if(window.scrollY > 100) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
     });
 
-    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function(e){
         const href = this.getAttribute('href');
-        if (href !== '#') {
+        if(href !== '#'){
           e.preventDefault();
           const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
+          if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
         }
       });
     });
 
-    // Add animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+    const observerOptions = { threshold:0.1, rootMargin:'0px 0px -100px 0px' };
+    const observer = new IntersectionObserver(function(entries){
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.style.animation='fadeInUp 0.6s ease-out forwards';
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
-
-    document.querySelectorAll('.feature-card, .category').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.feature-card, .category').forEach(el=>observer.observe(el));
   </script>
 
 </body>
 </html>
-
