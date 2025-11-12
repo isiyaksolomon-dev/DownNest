@@ -5,13 +5,13 @@
 
 [Setup]
 AppName=DownNest
-AppVersion=1.1.0
+AppVersion=1.0.1
 AppPublisher=Isiyak Solomon
 AppPublisherURL=https://github.com/isiyaksolomon-dev/downnest
 AppSupportURL=mailto:isiyak.solomon.01@gmail.com
 DefaultDirName={autopf}\DownNest
 DefaultGroupName=DownNest
-OutputBaseFilename=DownNest_Setup_1.1.0
+OutputBaseFilename=DownNest_Setup_1.0.1
 Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64 x86
@@ -39,9 +39,9 @@ AlwaysShowDirOnReadyPage=yes
 AlwaysShowGroupOnReadyPage=yes
 
 ; Output Settings
-VersionInfoVersion=1.1.0.0
+VersionInfoVersion=1.0.1.0
 VersionInfoProductName=DownNest
-VersionInfoProductVersion=1.1.0
+VersionInfoProductVersion=1.0.1
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -71,7 +71,7 @@ Filename: "{app}\nssm.exe"; Parameters: "remove DownNest confirm"; Flags: runhid
 [Registry]
 Root: HKCU; Subkey: "Software\DownNest"; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\DownNest"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"
-Root: HKCU; Subkey: "Software\DownNest"; ValueType: string; ValueName: "Version"; ValueData: "1.0.0"
+Root: HKCU; Subkey: "Software\DownNest"; ValueType: string; ValueName: "Version"; ValueData: "1.0.1"
 
 [Code]
 
