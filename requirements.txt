@@ -3,3 +3,4 @@
 watchdog          # File system monitoring
 psutil            # Process & system utilities
 pywin32           # Windows-specific extensions for service & admin tasks
+winotify          # Windows Toast notifications

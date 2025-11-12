@@ -5,13 +5,13 @@
 
 [Setup]
 AppName=DownNest
-AppVersion=1.0.0
+AppVersion=1.1.0
 AppPublisher=Isiyak Solomon
 AppPublisherURL=https://github.com/isiyaksolomon-dev/downnest
 AppSupportURL=mailto:isiyak.solomon.01@gmail.com
 DefaultDirName={autopf}\DownNest
 DefaultGroupName=DownNest
-OutputBaseFilename=DownNest_Setup_1.0.0
+OutputBaseFilename=DownNest_Setup_1.1.0
 Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64 x86
@@ -39,9 +39,9 @@ AlwaysShowDirOnReadyPage=yes
 AlwaysShowGroupOnReadyPage=yes
 
 ; Output Settings
-VersionInfoVersion=1.0.0.0
+VersionInfoVersion=1.1.0.0
 VersionInfoProductName=DownNest
-VersionInfoProductVersion=1.0.0
+VersionInfoProductVersion=1.1.0
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -74,6 +74,7 @@ Root: HKCU; Subkey: "Software\DownNest"; ValueType: string; ValueName: "InstallP
 Root: HKCU; Subkey: "Software\DownNest"; ValueType: string; ValueName: "Version"; ValueData: "1.0.0"
 
 [Code]
+
 // --------------------------------------------------------
 // Welcome Page Custom Message
 // --------------------------------------------------------
@@ -117,6 +118,24 @@ begin
 end;
 
 // --------------------------------------------------------
+// Procedure to prompt deletion of installer
+// --------------------------------------------------------
+procedure PromptDeleteInstaller();
+var
+  InstallerPath: string;
+begin
+  InstallerPath := ExpandConstant('{srcexe}');
+  if FileExists(InstallerPath) then
+  begin
+    if MsgBox('Do you want to delete the installer file now?' + #13#13 + InstallerPath,
+              mbConfirmation, MB_YESNO) = IDYES then
+    begin
+      MsgBox('Cannot delete the installer while it is running. Please remove it manually after closing.', mbInformation, MB_OK);
+    end;
+  end;
+end;
+
+// --------------------------------------------------------
 // Installation Success Message
 // --------------------------------------------------------
 procedure CurStepChanged(CurStep: TSetupStep);
@@ -132,6 +151,9 @@ begin
       '  • DownNest runs silently in the background' + #13#13 +
       'For more information, visit the README file in the installation folder.',
       mbInformation, MB_OK);
+
+    // Prompt user to delete installer after installation
+    PromptDeleteInstaller();
   end;
 end;
 

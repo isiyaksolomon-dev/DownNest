@@ -1,6 +1,6 @@
 # ============================================================================
 # DownNest - Smart Downloads Organizer
-# Version: 1.0.0
+# Version: 1.0.1
 # 
 # Copyright (c) 2025 Isiyak Solomon
 # Licensed under MIT License - See LICENSE.txt for details
@@ -12,17 +12,16 @@
 import os
 import time
 import shutil
-import threading
 from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from winotify import Notification, audio
 
 # ----------------------------
 # Configuration
 # ----------------------------
 
-# Detect all user profiles (including default)
 USERS_DIR = Path("C:/Users")
 DOWNLOAD_FOLDERS = []
 
@@ -32,7 +31,6 @@ for user_dir in USERS_DIR.iterdir():
         if dl.exists():
             DOWNLOAD_FOLDERS.append(dl)
 
-# Define categories and extensions
 CATEGORIES = {
     "Documents": [".pdf", ".docx", ".txt", ".pptx", ".xls", ".xlsx"],
     "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg"],
@@ -44,10 +42,7 @@ CATEGORIES = {
     "Others": []
 }
 
-# Temporary browser download extensions to ignore
 TEMP_EXTENSIONS = [".crdownload", ".part", ".download"]
-
-# Thread pool for moving files
 executor = ThreadPoolExecutor(max_workers=os.cpu_count() or 4)
 
 # ----------------------------
@@ -61,8 +56,21 @@ def get_category(file_path: Path) -> str:
             return category
     return "Others"
 
-def move_file(file_path: Path):
-    """Move file to appropriate category folder."""
+def show_notification(title: str, message: str):
+    """Display a Windows notification using winotify in concise professional style."""
+    try:
+        toast = Notification(
+            app_id="DownNest",
+            title=f"❇️ {title}",
+            msg=message,
+        )
+        toast.set_audio(audio.Default, loop=False)
+        toast.show()
+    except Exception as e:
+        print(f"⚠️ Failed to show notification: {e}")
+
+def move_file(file_path: Path, notify=True):
+    """Move file to appropriate category folder and show notification."""
     if not file_path.exists() or file_path.suffix.lower() in TEMP_EXTENSIONS:
         return
 
@@ -73,14 +81,17 @@ def move_file(file_path: Path):
     try:
         shutil.move(str(file_path), str(dest_dir / file_path.name))
         print(f"✅ Moved {file_path.name} → {category}")
+
+        if notify:
+            message = f"New download organized:\n{file_path.name} → {category}"
+            show_notification("DownNest", message)
+
     except Exception as e:
         print(f"⚠️ Failed to move {file_path.name}: {e}")
 
 def wait_for_complete(file_path: Path, retries=3, delay=0.5):
-    """Wait until file download is complete by checking stable size."""
     last_size = -1
     stable_count = 0
-
     while stable_count < retries:
         if not file_path.exists():
             return False
@@ -96,10 +107,10 @@ def wait_for_complete(file_path: Path, retries=3, delay=0.5):
 def process_file(file_path: Path):
     if file_path.suffix.lower() in TEMP_EXTENSIONS:
         return
+    print(f"⏳ Waiting 30s before moving {file_path.name}...")
+    time.sleep(30)
     if wait_for_complete(file_path):
-        print(f"⏳ Waiting 30s before moving {file_path.name}...")
-        time.sleep(30)
-        move_file(file_path)
+        move_file(file_path, notify=True)
 
 # ----------------------------
 # Watchdog event handler
@@ -115,14 +126,24 @@ class DownloadHandler(FileSystemEventHandler):
             executor.submit(process_file, Path(event.dest_path))
 
 # ----------------------------
-# Initial organization
+# Initial organization with summary notification
 # ----------------------------
 
 def organize_existing():
+    moved_files = 0
     for folder in DOWNLOAD_FOLDERS:
         for f in folder.iterdir():
             if f.is_file() and f.suffix.lower() not in TEMP_EXTENSIONS:
-                executor.submit(move_file, f)
+                move_file(f, notify=False)
+                moved_files += 1
+
+    if moved_files > 0:
+        message = (
+            f"Downloads folder organized.\n"
+            f"Files moved: {moved_files}\n"
+            f"All files sorted into categories."
+        )
+        show_notification("DownNest", message)
 
 # ----------------------------
 # Main program
