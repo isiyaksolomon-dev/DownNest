@@ -1,35 +1,55 @@
 name: Update Download Count
 
+# Run every 30 minutes
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Runs every 30 minutes
-  workflow_dispatch:        # Manual trigger
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Allows manual trigger
 
 jobs:
   update-downloads:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # Important: we use PAT to push
 
-      - name: Fetch download counts from GitHub Releases
-        id: fetch_counts
+      # Step 2: Set up Node.js (for fetch script, optional if you want pure bash)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Step 3: Fetch download counts and save to JSON
+      - name: Fetch GitHub download counts
         run: |
-          echo "Fetching download counts..."
-          TOTAL=0
-          releases=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/releases)
-          echo "$releases" > releases.json
-          TOTAL=$(echo "$releases" | jq '[.[] | .assets[]?.download_count // 0] | add')
-          echo "Total downloads: $TOTAL"
-          mkdir -p docs
-          echo "{\"totalDownloads\": $TOTAL}" > docs/download-count.json
-          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+          echo "Fetching GitHub release download counts..."
+          curl -s -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/releases \
+            > releases.json
 
-      - name: Commit and push JSON
+          # Compute total downloads
+          TOTAL=0
+          for asset in $(jq '.[] | .assets[]?.download_count // 0' releases.json); do
+            TOTAL=$((TOTAL + asset))
+          done
+
+          echo "Total downloads: $TOTAL"
+
+          # Write to JSON file
+          mkdir -p docs
+          echo "{\"downloads\": $TOTAL}" > docs/download-count.json
+
+      # Step 4: Commit and push
+      - name: Commit and push updated download count
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/download-count.json
           git commit -m "Update download count [skip ci]" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
