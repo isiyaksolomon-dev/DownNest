@@ -1,9 +1,9 @@
-name: Update GitHub Release Downloads
+name: Update Download Count
 
 on:
   schedule:
-    - cron: '0 * * * *'  # runs every hour
-  workflow_dispatch: # can be triggered manually
+    - cron: '*/30 * * * *'  # Runs every 30 minutes
+  workflow_dispatch:        # Manual trigger
 
 jobs:
   update-downloads:
@@ -13,25 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Fetch releases from GitHub API
-        id: fetch_releases
+      - name: Fetch download counts from GitHub Releases
+        id: fetch_counts
         run: |
-          echo "Fetching releases..."
-          releases=$(curl -s -H "Accept: application/vnd.github+json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/${{ github.repository }}/releases)
-          
-          total=0
-          echo "$releases" | jq -r '.[] | .assets[]? | .download_count' | while read count; do
-            total=$((total + count))
-          done
-          echo "Total downloads: $total"
-          echo "totalDownloads=$total" >> $GITHUB_ENV
-
-      - name: Write JSON to file
-        run: |
+          echo "Fetching download counts..."
+          TOTAL=0
+          releases=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/releases)
+          echo "$releases" > releases.json
+          TOTAL=$(echo "$releases" | jq '[.[] | .assets[]?.download_count // 0] | add')
+          echo "Total downloads: $TOTAL"
           mkdir -p docs
-          echo "{\"totalDownloads\": ${{ env.totalDownloads}}}" > docs/download-count.json
+          echo "{\"totalDownloads\": $TOTAL}" > docs/download-count.json
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
 
       - name: Commit and push JSON
         run: |
@@ -40,4 +33,3 @@ jobs:
           git add docs/download-count.json
           git commit -m "Update download count [skip ci]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
-
