@@ -1,0 +1,42 @@
+name: Update GitHub Release Downloads
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # runs every hour
+  workflow_dispatch: # can be triggered manually
+
+jobs:
+  update-downloads:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch releases from GitHub API
+        id: fetch_releases
+        run: |
+          echo "Fetching releases..."
+          releases=$(curl -s -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/releases)
+          
+          total=0
+          echo "$releases" | jq -r '.[] | .assets[]? | .download_count' | while read count; do
+            total=$((total + count))
+          done
+          echo "Total downloads: $total"
+          echo "totalDownloads=$total" >> $GITHUB_ENV
+
+      - name: Write JSON to file
+        run: |
+          mkdir -p docs
+          echo "{\"totalDownloads\": ${{ env.totalDownloads}}}" > docs/download-count.json
+
+      - name: Commit and push JSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/download-count.json
+          git commit -m "Update download count [skip ci]" || echo "No changes to commit"
+          git push
