@@ -347,33 +347,21 @@
     document.querySelectorAll('.feature-card, .category').forEach(el=>observer.observe(el));
   </script>
   
-  <script>
-  async function loadDownloadCount() {
-    const countEl = document.getElementById('downloadCount');
-    try {
-      const response = await fetch('https://api.github.com/repos/isiyaksolomon-dev/DownNest/releases');
-      if (!response.ok) throw new Error('GitHub API error');
-      const releases = await response.json();
-
-      // Combine downloads from all releases
-      let totalDownloads = 0;
-      releases.forEach(rel => {
-        if (rel.assets && rel.assets.length > 0) {
-          rel.assets.forEach(asset => {
-            if (asset.download_count) totalDownloads += asset.download_count;
-          });
-        }
-      });
-
-      countEl.textContent = totalDownloads > 0 ? totalDownloads.toLocaleString() : '0';
-    } catch (err) {
-      console.error('Error fetching GitHub downloads:', err);
-      countEl.textContent = 'Unavailable';
-    }
+<script>
+async function loadDownloadCount() {
+  const countEl = document.getElementById('downloadCount');
+  try {
+    const response = await fetch('download-count.json'); // file in docs folder
+    const data = await response.json();
+    countEl.textContent = data.totalDownloads.toLocaleString();
+  } catch (err) {
+    console.error('Error loading download count:', err);
+    countEl.textContent = 'Unavailable';
   }
-
-  loadDownloadCount();
+}
+loadDownloadCount();
 </script>
+
 
 
 </body>
