@@ -288,8 +288,9 @@
       <p>Download DownNest now and organize your Downloads folder automatically.</p>
       <a href="https://github.com/isiyaksolomon-dev/DownNest/releases/download/v1.0.1/DownNest_Setup_1.0.1.exe" class="btn btn-primary" style="margin-bottom:2rem;" download>⬇️ Download DownNest v1.0.1</a>
       <!-- 📈 Download counter -->
+		<!-- 📈 Download counter -->
 		<p style="margin-top:0.5rem; font-size:0.95rem; color:var(--text-secondary);">
-			📈 Downloads so far: <strong id="downloadCount">Loading...</strong>
+  			📈 Downloads so far: <strong id="downloadCount">Loading...</strong>
 		</p>
 	  <div class="download-info">
         <span>💾 ~100 MB</span>
@@ -351,9 +352,10 @@
 async function loadDownloadCount() {
   const countEl = document.getElementById('downloadCount');
   try {
-    const response = await fetch('download-count.json'); // file in docs folder
+    const response = await fetch('download-count.json'); // local JSON file
+    if (!response.ok) throw new Error('Failed to fetch download count');
     const data = await response.json();
-    countEl.textContent = data.totalDownloads.toLocaleString();
+    countEl.textContent = data.downloads.toLocaleString(); // use correct property
   } catch (err) {
     console.error('Error loading download count:', err);
     countEl.textContent = 'Unavailable';
