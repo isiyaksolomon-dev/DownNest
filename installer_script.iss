@@ -55,8 +55,8 @@ Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
 Source: "LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{autoprograms}\DownNest"; Filename: "{app}\downnest.exe"; IconFilename: "{app}\icon.ico"; Comment: "Smart Downloads Organizer"; WorkingDir: "{app}"
-Name: "{autodesktop}\DownNest"; Filename: "{app}\downnest.exe"; IconFilename: "{app}\icon.ico"; Comment: "Smart Downloads Organizer"; WorkingDir: "{app}"
+Name: "{autoprograms}\DownNest"; Filename: "{app}\downnest.exe"; IconFilename: "{app}\icon.ico"; Comment: "Smart Downloads Organizer"; WorkingDir: "{app}"; AppUserModelID: "DownNest.App"
+Name: "{autodesktop}\DownNest"; Filename: "{app}\downnest.exe"; IconFilename: "{app}\icon.ico"; Comment: "Smart Downloads Organizer"; WorkingDir: "{app}"; AppUserModelID: "DownNest.App"
 Name: "{app}\License.txt"; Filename: "{app}\LICENSE.txt"
 
 [Run]

@@ -1,4 +1,9 @@
-# DownNest - Smart Downloads Organizer dependencies
+# ============================================================================
+# DownNest - Smart Downloads Organizer Dependencies
+# Version: 1.0.1
+# 
+# Core dependencies for file monitoring, system utilities, and Windows integration
+# ============================================================================
 
 watchdog          # File system monitoring
 psutil            # Process & system utilities
