@@ -1,6 +1,6 @@
 # ============================================================================
 # DownNest - Smart Downloads Organizer Dependencies
-# Version: 1.0.1
+# Version: 1.0.2
 # 
 # Core dependencies for file monitoring, system utilities, and Windows integration
 # ============================================================================

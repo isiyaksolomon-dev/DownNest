@@ -5,13 +5,13 @@
 
 [Setup]
 AppName=DownNest
-AppVersion=1.0.1
+AppVersion=1.0.2
 AppPublisher=Isiyak Solomon
 AppPublisherURL=https://github.com/isiyaksolomon-dev/downnest
 AppSupportURL=mailto:isiyak.solomon.01@gmail.com
 DefaultDirName={autopf}\DownNest
 DefaultGroupName=DownNest
-OutputBaseFilename=DownNest_Setup_1.0.1
+OutputBaseFilename=DownNest_Setup_1.0.2
 Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64 x86
@@ -39,9 +39,9 @@ AlwaysShowDirOnReadyPage=yes
 AlwaysShowGroupOnReadyPage=yes
 
 ; Output Settings
-VersionInfoVersion=1.0.1.0
+VersionInfoVersion=1.0.2.0
 VersionInfoProductName=DownNest
-VersionInfoProductVersion=1.0.1
+VersionInfoProductVersion=1.0.2
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

@@ -1,6 +1,6 @@
 # ============================================================================
 # DownNest - Smart Downloads Organizer
-# Version: 2.0.8 - Added Notification Sound & UI Improvements
+# Version: 1.0.2 - Added Notification Sound & UI Improvements
 # 
 # Copyright (c) 2025 Isiyak Solomon
 # Licensed under MIT License - See LICENSE.txt for details
