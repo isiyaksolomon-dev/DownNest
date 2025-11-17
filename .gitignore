@@ -16,6 +16,9 @@ Output/
 # IDE files
 .vscode/
 .idea/
+sign.bat
+build.bat
+sign-clean.bat
 
 # Windows files
 Thumbs.db

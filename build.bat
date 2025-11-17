@@ -41,6 +41,7 @@ echo   - watchdog
 echo   - psutil
 echo   - pywin32
 echo   - winotify
+echo   - requests
 echo.
 pip install -r requirements.txt
 if errorlevel 1 (

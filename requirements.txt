@@ -1,11 +1,12 @@
 # ============================================================================
 # DownNest - Smart Downloads Organizer Dependencies
 # Version: 1.0.2
-# 
+#
 # Core dependencies for file monitoring, system utilities, and Windows integration
 # ============================================================================
 
-watchdog          # File system monitoring
-psutil            # Process & system utilities
-pywin32           # Windows-specific extensions for service & admin tasks
-winotify          # Windows Toast notifications
+watchdog    # File system monitoring
+psutil      # Process and system utilities
+pywin32     # Windows-specific extensions (service & admin tasks)
+winotify    # Windows Toast notifications
+requests    # HTTP requests for update checks
