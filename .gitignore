@@ -23,10 +23,13 @@ Output/
 .vscode/
 .idea/
 
-# Ignore batch scripts used for signing/building
+# ====================================================================
+# Ignore batch scripts & sensitive files
+# ====================================================================
 sign.bat
 build.bat
 sign-clean.bat
+certificate.pfx
 
 # ====================================================================
 # Windows System Files
