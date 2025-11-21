@@ -55,14 +55,13 @@
   </script>
   
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L8VTFCL4LC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L8VTFCL4LC');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8VTFCL4LC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8VTFCL4LC');
+  </script>
 
   <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -135,8 +134,7 @@
       overflow:hidden;
     }
     header::before {
-      content:'';
-      position:absolute; top:0; left:0; right:0; bottom:0;
+      content:''; position:absolute; top:0; left:0; right:0; bottom:0;
       background: radial-gradient(circle at 20% 50%, rgba(6,182,212,0.1) 0%, transparent 50%),
                   radial-gradient(circle at 80% 80%, rgba(16,185,129,0.05) 0%, transparent 50%);
       pointer-events:none;
@@ -144,7 +142,7 @@
     .hero-content { max-width:900px; z-index:1; text-align:center; animation: fadeInUp 0.8s ease-out;}
     @keyframes fadeInUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
     .hero-icon { font-size:4rem; margin-bottom:1.5rem; animation:bounce 2s ease-in-out infinite;}
-    @keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+    @keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
     header h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight:700; margin-bottom:1rem;
       background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:-1px; }
@@ -154,11 +152,7 @@
       padding:0.875rem 2rem; border-radius:8px; font-size:1rem; font-weight:600; text-decoration:none;
       border:none; cursor:pointer; transition:var(--transition); display:inline-flex; align-items:center; gap:0.5rem; letter-spacing:0.3px;
     }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent) 0%, #0891b2 100%);
-      color: var(--bg-dark);
-      box-shadow: 0 10px 25px rgba(6,182,212,0.3);
-    }
+    .btn-primary { background: linear-gradient(135deg, var(--accent) 0%, #0891b2 100%); color: var(--bg-dark); box-shadow: 0 10px 25px rgba(6,182,212,0.3);}
     .btn-primary:hover { transform:translateY(-2px); box-shadow:0 15px 35px rgba(6,182,212,0.4);}
     .btn-secondary { background:transparent; color:var(--accent); border:1.5px solid var(--accent);}
     .btn-secondary:hover { background: rgba(6,182,212,0.1); transform:translateY(-2px); }
@@ -228,6 +222,20 @@
     </div>
   </nav>
 
+  <!-- AD 728x90 after navbar -->
+  <div style="margin-top:70px; text-align:center;">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'b65f48211b1ff05be773b9b8ce6a837b',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/b65f48211b1ff05be773b9b8ce6a837b/invoke.js"></script>
+  </div>
+
   <!-- HERO SECTION -->
   <header>
     <div class="hero-content">
@@ -254,6 +262,21 @@
       <h2>Why Choose DownNest?</h2>
       <p>Powerful features designed to make your digital life organized and efficient</p>
     </div>
+
+  <!-- AD 300x250 inside Features -->
+  <div style="text-align:center; margin-bottom:2rem;">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'b65f48211b1ff05be773b9b8ce6a837b',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/b65f48211b1ff05be773b9b8ce6a837b/invoke.js"></script>
+  </div>
+
     <div class="features-grid">
       <div class="feature-card"><div class="feature-icon">⚡</div><h3>Real-time Organization</h3><p>Automatically sorts files as they download. No manual intervention needed.</p></div>
       <div class="feature-card"><div class="feature-icon">🔒</div><h3>Safe & Secure</h3><p>Respects file permissions and handles locked files gracefully. Your data is protected.</p></div>
@@ -268,6 +291,21 @@
   <section class="features">
     <div class="categories" id="categories">
       <h3>Automatic File Organization</h3>
+
+      <!-- AD 300x250 inside Categories -->
+      <div style="text-align:center; margin-bottom:2rem;">
+        <script type="text/javascript">
+          atOptions = {
+            'key' : 'b65f48211b1ff05be773b9b8ce6a837b',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/b65f48211b1ff05be773b9b8ce6a837b/invoke.js"></script>
+      </div>
+
       <div class="categories-grid">
         <div class="category"><div class="category-icon">📄</div><div class="category-name">Documents</div><div class="category-ext">PDF, DOCX, TXT, XLSX</div></div>
         <div class="category"><div class="category-icon">🖼️</div><div class="category-name">Images</div><div class="category-ext">JPG, PNG, GIF, SVG</div></div>
@@ -281,18 +319,30 @@
     </div>
   </section>
 
+  <!-- AD 300x250 above Download -->
+  <div style="text-align:center; margin:2rem 0;">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'b65f48211b1ff05be773b9b8ce6a837b',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/b65f48211b1ff05be773b9b8ce6a837b/invoke.js"></script>
+  </div>
+
   <!-- DOWNLOAD -->
   <section class="features">
     <div class="download-section" id="download">
       <h2>Ready to Get Started?</h2>
       <p>Download DownNest now and organize your Downloads folder automatically.</p>
       <a href="https://github.com/isiyaksolomon-dev/DownNest/releases/download/v1.0.2/DownNest_Setup_1.0.2.exe" class="btn btn-primary" style="margin-bottom:2rem;" download>⬇️ Download DownNest</a>
-      <!-- 📈 Download counter -->
-		<!-- 📈 Download counter -->
-		<p style="margin-top:0.5rem; font-size:0.95rem; color:var(--text-secondary);">
-  			📈 Downloads so far: <strong id="downloadCount">Loading...</strong>
-		</p>
-	  <div class="download-info">
+      <p style="margin-top:0.5rem; font-size:0.95rem; color:var(--text-secondary);">
+        📈 Downloads so far: <strong id="downloadCount">Loading...</strong>
+      </p>
+      <div class="download-info">
         <span>💾 ~100 MB</span>
         <span>🪟 Windows 7+</span>
         <span>⚡ Fast Install</span>
@@ -303,6 +353,20 @@
       </div>
     </div>
   </section>
+
+  <!-- AD 300x250 above Footer -->
+  <div style="text-align:center; margin:2rem 0;">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'b65f48211b1ff05be773b9b8ce6a837b',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/b65f48211b1ff05be773b9b8ce6a837b/invoke.js"></script>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -348,23 +412,21 @@
     document.querySelectorAll('.feature-card, .category').forEach(el=>observer.observe(el));
   </script>
   
-<script>
-async function loadDownloadCount() {
-  const countEl = document.getElementById('downloadCount');
-  try {
-    const response = await fetch('download-count.json'); // local JSON file
-    if (!response.ok) throw new Error('Failed to fetch download count');
-    const data = await response.json();
-    countEl.textContent = data.downloads.toLocaleString(); // use correct property
-  } catch (err) {
-    console.error('Error loading download count:', err);
-    countEl.textContent = 'Unavailable';
+  <script>
+  async function loadDownloadCount() {
+    const countEl = document.getElementById('downloadCount');
+    try {
+      const response = await fetch('download-count.json'); // local JSON file
+      if (!response.ok) throw new Error('Failed to fetch download count');
+      const data = await response.json();
+      countEl.textContent = data.downloads.toLocaleString(); // use correct property
+    } catch (err) {
+      console.error('Error loading download count:', err);
+      countEl.textContent = 'Unavailable';
+    }
   }
-}
-loadDownloadCount();
-</script>
-
-
+  loadDownloadCount();
+  </script>
 
 </body>
 </html>
